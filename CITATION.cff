@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "To cite this repository, use:"
+license: CC-BY-4.0
+title: "Development of a Remote Communications Infrastructure for an Off-Grid Energy System: Hardware, Software, and Data"
+date-released: "2025-09-09"
+doi: XXXX
+type: software
+authors:
+  - family-names: Voeten
+    given-names: Jerun
+    email: jvoeten@student.ethz.ch
+    ordid: https://orcid.org/0009-0009-9822-1285
+  - family-names: Alcock
+    given-names: Rebecca
+    email: ralcock@ethz.ch
+    orcid: https://orcid.org/
+  - family-names: Tkaczuk
+    given-names: Jakub
+    email: jtkaczuk@ethz.ch
+    orcid: https://orcid.org/0000-0001-7997-9423
+  - family-names: Tilley
+    given-names: Elizabeth
+    email: tilleye@ethz.ch
+    orcid: https://orcid.org/0000-0002-2095-9724
+contact:
+  - family-names: Voeten
+    given-names: Jerun
+    email: jerun.voeten@gmail.com
+    ordid: https://orcid.org/0009-0009-9822-1285
+version: 0.0.1
