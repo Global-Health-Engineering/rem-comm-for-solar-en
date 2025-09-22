@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "outdoorNode-eagle-import")(type "KiCad")(uri "${KIPRJMOD}/outdoorNode-eagle-import.kicad_sym")(options "")(descr ""))
+  (lib (name "outdoorNode-altium-import")(type "KiCad")(uri "${KIPRJMOD}/outdoorNode-altium-import.kicad_sym")(options "")(descr ""))
+)
