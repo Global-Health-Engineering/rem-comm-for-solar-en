@@ -1,0 +1,143 @@
+{
+  "ruleChain": {
+    "name": "Tezhumke Rule Chain",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null,
+    "additionalInfo": {
+      "description": ""
+    }
+  },
+  "metadata": {
+    "version": 96,
+    "firstNodeIndex": 0,
+    "nodes": [
+      {
+        "type": "org.thingsboard.rule.engine.profile.TbDeviceProfileNode",
+        "name": "alarm",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1747230398680
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "persistAlarmRulesState": false
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 305,
+          "layoutY": 150
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "safe count alert",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1747230398680
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "defaultTTL": 0,
+          "useServerTs": false,
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          }
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 839,
+          "layoutY": 363
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.analytics.latest.alarm.TbAlarmsCountNodeV2",
+        "name": "count alerts each day",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1747230168901
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "alarmsCountMappings": [
+            {
+              "target": "alarmsCount",
+              "typesList": [],
+              "severityList": [],
+              "statusList": []
+            }
+          ],
+          "countAlarmsForPropagationEntities": true,
+          "propagationEntityTypes": [
+            "DEVICE"
+          ],
+          "outMsgType": "POST_TELEMETRY_REQUEST"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 445,
+          "layoutY": 276
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.analytics.latest.alarm.TbAlarmsCountNode",
+        "name": "alerts in 24h",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "periodValue": 1,
+          "periodTimeUnit": "MINUTES",
+          "outMsgType": "POST_TELEMETRY_REQUEST",
+          "countAlarmsForChildEntities": false,
+          "parentEntitiesQuery": {
+            "type": "single",
+            "entityId": {
+              "entityType": "DEVICE",
+              "id": "d5b90c50-15df-11f0-bf58-a15803c84081"
+            }
+          },
+          "alarmsCountMappings": [
+            {
+              "target": "alarmsCount",
+              "latestInterval": 86400000,
+              "typesList": [],
+              "severityList": [],
+              "statusList": []
+            }
+          ]
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 556,
+          "layoutY": 364
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 2,
+        "type": "Alarm Created"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 1,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

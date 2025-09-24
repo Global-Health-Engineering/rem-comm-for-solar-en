@@ -1,0 +1,337 @@
+{
+  "ruleChain": {
+    "name": "Root Rule Chain",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null,
+    "additionalInfo": null
+  },
+  "metadata": {
+    "version": 171,
+    "firstNodeIndex": 9,
+    "nodes": [
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "Save Timeseries",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1744876082272
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "defaultTTL": 0,
+          "useServerTs": false,
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          }
+        },
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 1306,
+          "layoutY": 65
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "Save Attributes",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 3,
+        "configuration": {
+          "scope": "CLIENT_SCOPE",
+          "notifyDevice": false,
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          },
+          "sendAttributesUpdatedNotification": false,
+          "updateAttributesOnlyOnValueChange": true
+        },
+        "additionalInfo": {
+          "layoutX": 939,
+          "layoutY": 61
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode",
+        "name": "Message Type Switch",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "version": 0
+        },
+        "additionalInfo": {
+          "layoutX": 566,
+          "layoutY": 302
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.action.TbLogNode",
+        "name": "Log RPC from Device",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "TBEL",
+          "jsScript": "return '\\nIncoming message:\\n' + JSON.stringify(msg) + '\\nIncoming metadata:\\n' + JSON.stringify(metadata);",
+          "tbelScript": "return '\\nIncoming message:\\n' + JSON.stringify(msg) + '\\nIncoming metadata:\\n' + JSON.stringify(metadata);"
+        },
+        "additionalInfo": {
+          "layoutX": 979,
+          "layoutY": 381
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.action.TbLogNode",
+        "name": "Log Other",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "TBEL",
+          "jsScript": "return '\\nIncoming message:\\n' + JSON.stringify(msg) + '\\nIncoming metadata:\\n' + JSON.stringify(metadata);",
+          "tbelScript": "return '\\nIncoming message:\\n' + JSON.stringify(msg) + '\\nIncoming metadata:\\n' + JSON.stringify(metadata);"
+        },
+        "additionalInfo": {
+          "layoutX": 1233,
+          "layoutY": 567
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.rpc.TbSendRPCRequestNode",
+        "name": "RPC Call Request",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "timeoutInSeconds": 60
+        },
+        "additionalInfo": {
+          "layoutX": 1000,
+          "layoutY": 583
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.filter.TbOriginatorTypeFilterNode",
+        "name": "Is Entity Group",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "originatorTypes": [
+            "ENTITY_GROUP"
+          ]
+        },
+        "additionalInfo": {
+          "layoutX": 255,
+          "layoutY": 301
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeFilterNode",
+        "name": "Post attributes or RPC request",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "messageTypes": [
+            "POST_ATTRIBUTES_REQUEST",
+            "RPC_CALL_FROM_SERVER_TO_DEVICE"
+          ]
+        },
+        "additionalInfo": {
+          "layoutX": 319,
+          "layoutY": 109
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbDuplicateMsgToGroupNode",
+        "name": "Duplicate To Group Entities",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "entityGroupId": null,
+          "entityGroupIsMessageOriginator": true
+        },
+        "additionalInfo": {
+          "layoutX": 627,
+          "layoutY": 108
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.profile.TbDeviceProfileNode",
+        "name": "Device Profile Node",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1747142627187
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "persistAlarmRulesState": false,
+          "fetchAlarmRulesStateOnStart": false
+        },
+        "additionalInfo": {
+          "description": "Process incoming messages from devices with the alarm rules defined in the device profile. Dispatch all incoming messages with \"Success\" relation type.",
+          "layoutX": 137,
+          "layoutY": 415
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.flow.TbRuleChainInputNode",
+        "name": "Generate Report",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "ruleChainId": "fc61d560-ff3e-11ef-aa33-0b201e33bb48",
+          "forwardMsgToDefaultRuleChain": false
+        },
+        "additionalInfo": {
+          "description": "Forwards message to the \"Generate Report\" rule chain",
+          "layoutX": 1004,
+          "layoutY": 690
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "decode tezhumke payload",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1755620290980
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "// ETH Zürich\n// Global Health Engineering Lab\n// Masterthesis Voeten Jerun\n// Gateway script\n// August 2025\n\n// incoming data: hex\nfunction hexToBytes(hex) {\n    var bytes = [];\n    for (var i = 0; i < hex.length; i += 2) {\n      bytes.push(parseInt(hex.substr(i, 2), 16));\n    }\n    return bytes;\n  }\n  \n  // compare to received CRC\n  function computeCRC8(data) {\n    let crc = 0x00;\n    for (let b of data) {\n      let extract = b;\n      for (let bit = 0; bit < 8; bit++) {\n        let sum = (crc ^ extract) & 0x01;\n        crc = (crc >>> 1) & 0x7F;       // unsigned shift\n        if (sum) crc ^= 0x8C;\n        extract = (extract >>> 1) & 0x7F;\n      }\n    }\n    return crc;\n  }\n  \n  // ebike state\n  function decodeState(s) {\n      if      (s === 1) return \"Charging\";\n      else if (s === 2) return \"Discharging\";\n      else if (s === 0) return \"Not Docked\";\n      else              return \"Error\";\n  }\n  \n  // check payload type\n  var raw = msg.payloadHex !== undefined\n          ? msg.payloadHex\n          : msg.payload;\n  var hexPayload;\n  if (typeof raw === 'string') {\n    hexPayload = raw;\n  } else if (Array.isArray(raw)) {\n    hexPayload = raw.map(b => ('0'+b.toString(16)).slice(-2)).join('');\n  } else if (typeof raw === 'number') {\n    hexPayload = raw.toString();\n  } else {\n    throw new Error(\"Unsupported payload type: \" + typeof raw);\n  }\n  \n  // remove spaces\n  hexPayload = hexPayload.replace(/\\s+/g, '');\n  \n  if (!hexPayload) {\n    throw new Error(\"No Payload found in msg.payload\");\n  }\n  \n  var bytes = hexToBytes(hexPayload);\n  \n  if (bytes.length === 0) {\n    throw new Error(\"Empty Payload.\");\n  }\n  \n  var node = bytes[0]; // first byte indicates node\n  var data;\n  \n  if (bytes.length === 1)  { // node 1 or 1 and 2 are not sending\n     node = 3;\n  }\n  \n  // indoor node\n  if (node === 1) {\n    \n    if (bytes.length < 21) {\n      throw new Error(\"Payload is to short. expected: 21 Bytes, arrived: \" + bytes.length);\n    }\n  \n    // calculate CRC from Byte 0 - 19 \n    var computedCRC = computeCRC8(bytes.slice(0, 20));\n    var receivedCRC = bytes[20];\n    if (computedCRC !== receivedCRC) {\n      throw new Error(\"CRC not vaild Node 1: received=\" + receivedCRC + \", computed=\" + computedCRC);\n    }\n  \n    var signByte      = bytes[1];\n    var tempSign      = (signByte & 0x01) ? -1 : 1; // fridge temp sign\n    var currentSign   = (signByte & 0x02) ? -1 : 1;\n    var ceSign        = (signByte & 0x04) ? -1 : 1; // consumed_mAh sign\n    \n    // fridge temperature: byte 2,3\n    var tempMagRaw    = (bytes[2] << 8) | bytes[3];   \n    var fridgeTemp    = tempSign * (tempMagRaw / 10.0); //  235 → 23.5 °C\n  \n    // fridge humidity: byte 4,5\n    var humRaw        = (bytes[4] << 8) | bytes[5];  \n    var fridgeHum     = humRaw / 10.0;\n  \n    var InNodeBatSOC  = bytes[6];  // 0–100 %\n  \n    // stationary battery soc, byte: 7,8\n    var mainBatSOC_raw = (bytes[7] << 8) | bytes[8];  \n    var mainBatSOC     = mainBatSOC_raw / 10.0;\n  \n    // stationary battery voltage, byte: 9,10\n    var voltRaw        = (bytes[9] << 8) | bytes[10];\n    var mainBatVoltage = voltRaw / 10.0;\n  \n    // stationary battery current, byte: 11,12\n    var currRaw        = (bytes[11] << 8) | bytes[12];\n    var mainBatCurrent = currentSign * (currRaw / 10.0);\n  \n    // stationary battery consumed_mAh, byte: 13,14 \n    var CE_raw         = (bytes[13] << 16) | (bytes[14] << 8) | (bytes[15]); \n    var consumed_mAh = ceSign * CE_raw;           // in mAh\n  \n    // // stationary battery chargeCycles, byte: 15,16 \n    var chargeCycles   = (bytes[16] << 8) | bytes[17]; \n  \n    // ebike state, byte: 18\n    var packed      = bytes[18];\n    var eb1raw      =  (packed        & 0x03);        // Bits 0–1\n    var eb2raw      = ((packed >> 2)  & 0x03);        // Bits 2–3\n    var eb3raw      = ((packed >> 4)  & 0x03);        // Bits 4–5\n    var eb4raw      = ((packed >> 6)  & 0x03);        // Bits 6–7\n  \n    var eBikeState1 = decodeState(eb1raw);\n    var eBikeState2 = decodeState(eb2raw);\n    var eBikeState3 = decodeState(eb3raw);\n    var eBikeState4 = decodeState(eb4raw);\n  \n    // sensor states, byte: 19\n    var sensorState = bytes[19];\n    var InDHTStatus   = (sensorState & 0b1000) ? \"Error\" : \"OK\";\n    var SmartShuntStatus   = (sensorState & 0b0100) ? \"Error\" : \"OK\";\n    var InNodeBatStatus   = (sensorState & 0b0001) ? \"Error\" : \"OK\";\n    \n  \n    data = {\n      node: node,\n      fridgeTemp:    fridgeTemp,   \n      fridgeHum:     fridgeHum,   \n      InNodeBatSOC:  InNodeBatSOC, \n  \n      // SmartShunt-data\n      mainBatSOC:         mainBatSOC,         \n      mainBatVoltage:     mainBatVoltage,     \n      mainBatCurrent:     mainBatCurrent,     \n      consumed_mAh:   consumed_mAh,   \n      chargeCycles:       chargeCycles,   \n  \n      // eBike states\n      eBikeState1:        eBikeState1,        // \"Charging\" | \"Discharging\" | \"Not Docked\" | \"Error\"\n      eBikeState2:        eBikeState2,\n      eBikeState3:        eBikeState3,\n      eBikeState4:        eBikeState4,\n  \n      // Sensor-Status\n      InDHTStatus:          InDHTStatus,      \n      SmartShuntStatus: SmartShuntStatus,\n      InNodeBatStatus: InNodeBatStatus\n    };\n  }\n    \n  // outdoor node\n  else if (node === 2) {\n    \n    if (bytes.length < 14) {\n      throw new Error(\"Payload is to short. expected: 14 Bytes, arrived: \" + bytes.length);\n    }\n  \n    // calculate CRC from Byte 0 - 11 \n    var computedCRC = computeCRC8(bytes.slice(0, 12));\n    var receivedCRC = bytes[12];\n    if (computedCRC !== receivedCRC) {\n      throw new Error(\"CRC not vaild Node 2: received=\" + receivedCRC + \", computed=\" + computedCRC);\n    }\n  \n    // fridge temperature: byte 1,2,3\n    var tempSign    = bytes[1];                               // 0 = positiv, 1 = negativ\n    var tempMagRaw  = (bytes[2] << 8) | bytes[3];             \n    var tempValue   = tempMagRaw / 10.0;                       \n    if (tempSign === 1) tempValue = -tempValue;\n  \n    // fridge humidity: byte 4,5\n    var humRaw      = (bytes[4] << 8) | bytes[5];             \n    var humValue    = humRaw / 10.0;\n  \n    // Illuminance (lux)  byte: 6,7\n    var illuminance = (bytes[6] << 8) | bytes[7];             \n  \n    // Windspeed (m/s): byte 8,9\n    var windRaw     = (bytes[8] << 8) | bytes[9];              \n    var windValue   = windRaw / 10.0;\n  \n    var OutNodeBatSOC = bytes[10];\n  \n    // Sensor-Status\n    var sensorState = bytes[11];\n    var dhtStatus   = (sensorState & 0b1000) ? \"Error\" : \"OK\";\n    var lightStatus = (sensorState & 0b0100) ? \"Error\" : \"OK\";\n    var windStatus  = (sensorState & 0b0010) ? \"Error\" : \"OK\";\n    var outNodeBatStatus  = (sensorState & 0b001) ? \"Error\" : \"OK\";\n      \n    var repNodeBatSOC = bytes[13];\n    var repNodeBatStatus = \"OK\";\n\n\n    // ** // Attention! This feature was not tested due to time constraints.\n    // ** //To test it, remove all \"// **\" in this script and in the RepeaterNode.ino script\n    // ** //If it works, the status of node 1 will be set to Error whenever it does not transmit.\n\n    // ** var InNodeBatStatus   = \"\";\n    // ** // Case: only data from node 2 was received\n    // **if (repNodeBatSOC >= 102 && repNodeBatSOC <= 203) { \n        \n    // **    InNodeBatStatus   = \"Error\";\n    // **    repNodeBatSOC = repNodeBatSOC-102;\n    // **}\n\n    if (repNodeBatSOC === 101) { \n      repNodeBatStatus = \"Error\";  \n    }\n\n    data = {\n      node: node,\n      outTemp: tempValue,\n      outHum: humValue,\n      illuminance: illuminance,\n      windspeed: windValue,\n      OutNodeBatSOC: OutNodeBatSOC,\n      OutDHTStatus: dhtStatus,\n      OutLightStatus: lightStatus,\n      OutWindStatus: windStatus,\n      outNodeBatStatus: outNodeBatStatus,\n      repNodeBatSOC: repNodeBatSOC,\n      repNodeBatStatus: repNodeBatStatus // ** ,\n      \n      // ** InNodeBatStatus: InNodeBatStatus\n      \n    };\n  \n  } \n  \n  // repeater node\n  else if (node === 3) {\n      EncRepNodeBatSOC = bytes[0];\n      \n      // data from node 1 & 2 did not arrive at the repeater node. repeater sends its own soc\n      if (EncRepNodeBatSOC >= 0 && EncRepNodeBatSOC <= 101) {\n          var repNodeBatStatus = \"OK\";\n          var InNodeBatStatus   = \"Error\";\n          var outNodeBatStatus  = \"Error\";\n          var repNodeBatSOC = EncRepNodeBatSOC;\n          if (repNodeBatSOC === 101) {\n              repNodeBatStatus = \"Error\";  \n          }\n      }\n      // data from node 2 did not arrive at the repeater node. repeater sends its own soc\n      else if (EncRepNodeBatSOC >= 102 && EncRepNodeBatSOC <= 203) {\n          var repNodeBatStatus = \"OK\";\n          var InNodeBatStatus   = \"OK\";\n          var outNodeBatStatus  = \"Error\";\n          var repNodeBatSOC = EncRepNodeBatSOC-102;\n          if (repNodeBatSOC === 101) {\n              repNodeBatStatus = \"Error\"; \n          }\n      }   else {\n        throw new Error(\"wrong payload from node 3\"); \n      }\n      \n      data = {\n          node: node,\n          repNodeBatSOC: repNodeBatSOC,\n          outNodeBatStatus: outNodeBatStatus,\n          InNodeBatStatus: InNodeBatStatus,\n          repNodeBatStatus: repNodeBatStatus\n      };\n  \n  \n  }  else {\n      throw new Error(\"Unknown Node-ID: \" + node);\n  }\n  \n  return {\n    msg: data,\n    metadata: metadata,\n    msgType: \"POST_TELEMETRY_REQUEST\"\n  };\n  \n  \n  ",
+          "tbelScript": "return {msg: msg, metadata: metadata, msgType: msgType};"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 995,
+          "layoutY": 283
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.flow.TbRuleChainInputNode",
+        "name": "tezhumkeRulechain",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "forwardMsgToDefaultRuleChain": false,
+          "ruleChainId": "92e4bce0-16d3-11f0-a3eb-530ad7ff4b27"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1277,
+          "layoutY": 280
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 2,
+        "toIndex": 0,
+        "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "Post attributes"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 3,
+        "type": "RPC Request from Device"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 4,
+        "type": "Other"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 5,
+        "type": "RPC Request to Device"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 10,
+        "type": "Generate Report"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 11,
+        "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 2,
+        "type": "False"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 7,
+        "type": "True"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 2,
+        "type": "False"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 8,
+        "type": "True"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 4,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 12,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}
