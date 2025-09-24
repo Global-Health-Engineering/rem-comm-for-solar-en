@@ -27,4 +27,30 @@ It compliments the openly-accessible master’s thesis, available on the<br \>
 </p>
 
 # Overview
+Monitoring off-grid energy systems in remote locations with unreliable communications is challenging, yet it is essential in health facilities where continuous power supports patient care. Currently, there is no simple end-to-end solution that reliably captures all relevant variables and forwards them autonomously to a site with internet access for analysis and response.
+
+This thesis develops such a system for an off-grid health clinic in Tezhumke, northern Colombia. The design combines existing low-power sensing and long-range radio techniques with practical extensions for constrained clinical sites. In particular, robustness measures and encoding optimizations were added to improve packet delivery over Long Range (LoRa) links, and the overall architecture was engineered to run autonomously from small photovoltaic panels and local power bank storage.
+
+Custom sensor nodes record key measurements: medical refrigerator temperature and humidity, electrical parameters of the off-grid power system, and environmental data. Measurements are transmitted over LoRa and Long Range Wide-Area Network (LoRaWAN) to a gateway, visualized on an Internet of Things (IoT) platform (ThingsBoard), and automatically archived. Alarm rules notify remote researchers and on-site staff via platform alerts, email, SMS, and visual signals when thresholds are exceeded.
+
+
+In a 7-day field trial, the system achieved a packet reception rate of 97.64\% over a distance of 8.5\,km and demonstrated stable autonomous operation. These results confirm that the system is a mature prototype ready for extended field trials and potential deployment in real-world conditions. Future work should include extended seasonal testing, long-term studies of battery aging, and improvements to the weatherproofing of individual components.
+
+Beyond the immediate use case in Tezhumke, the system may also be applicable to other similarly affected clinics or remote sites. With further refinement, it could support predictive maintenance strategies and contribute to improved reliability of off-grid power supplies, thereby strengthening healthcare delivery in underserved regions.
+
+# Repository
+As part of this Master thesis, all developed resources have been collected and systematically documented in this public GitHub repository. The repository serves as a comprehensive reference point for future research and practical applications. It includes:
+
+• Source code for LoRa / LoRaWAN communication,
+
+• ThingsBoard dashboard configuration and the main payload decryption script,
+
+• Dedicated scripts for automated data export,
+
+• PCB layouts and electronic circuit schematics,
+
+• All custom-designed 3D models provided in STL format,
+
+• A complete bill of materials for all hardware components.
+
 
