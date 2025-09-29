@@ -19,5 +19,7 @@ Rule chains:
 The `thingsboardMainScript.js` corresponds to the “decode tezhumke payload” script in the root rule chain and is responsible for decoding all payloads.
 
 ![Figure 1. Root rule chain](RootRuleChain.png)
+Figure 1. Root rule chain.
 
 ![Figure 2. Tezhumke rule chain](TezhumkeRuleChain.png)
+Figure 2. Tezhumke rule chain.
