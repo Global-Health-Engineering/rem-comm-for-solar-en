@@ -1,21 +1,14 @@
+# `src/tb-exporter`
 
-This folder fetches data from thingsboard, generates CSV, sends email, uploads to Dropbox automatically using a cronjob.
+This folder fetches data from Thingsboard, generates CSV, sends email, uploads to Dropbox automatically using a cronjob.
 
 It contains the following files:
 
-config.env: contains passkeys and other confidential informations
-
-dropbox_auth.js: One-time (or occasional) script to authenticate with Dropbox and generate a dropbox_tokens.json file containing refresh tokens.
-Not automatic — you run it manually when you need to (e.g., first-time setup or if refresh tokens stop working).
-
-
-exporter.js: The main script — logs in, fetches data, generates CSV, sends email, uploads to Dropbox. This is what the cronjob executes weekly.
-
-
-package.json: Defines the Node.js project — dependencies, scripts, metadata. Used by npm.
-
-package-lock.json: Exact dependency versions — ensures installs are reproducible.
-
+- `config.env`: contains passkeys and other confidential informations
+- `dropbox_auth.js`: One-time (or occasional) script to authenticate with Dropbox and generate a dropbox_tokens.json file containing refresh tokens. Not automatic — you run it manually when you need to (e.g., first-time setup or if refresh tokens stop working).
+- `exporter.js`: The main script — logs in, fetches data, generates CSV, sends email, uploads to Dropbox. This is what the cronjob executes weekly.
+- `package.json`: Defines the Node.js project — dependencies, scripts, metadata. Used by npm.
+- `package-lock.json`: Exact dependency versions — ensures installs are reproducible.
 
 // ----------------------
 

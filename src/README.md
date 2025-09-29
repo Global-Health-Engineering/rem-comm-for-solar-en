@@ -1,9 +1,8 @@
-This folder contains 
+# `src
 
-Gateway: MQTT settings,
+This directory contains:
 
-LoRa_Board_Arduino_Code: Source code for LoRa / LoRaWAN communication,
-
-ThingsBoard: configuration for the ThingsBoard platform,
-
-tb-exporter: scripts for automated data export.
+- `Gateway` subdirectory with MQTT settings
+- `LoRa_Board_Arduino_Code` subdirectory with source code for LoRa / LoRaWAN communication
+- `ThingsBoard` subdirectory with configuration for the ThingsBoard platform
+- `tb-exporter` subdirectory with scripts for automated data export from ThingsBoard to CSV files

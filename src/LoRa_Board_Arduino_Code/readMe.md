@@ -1,4 +1,5 @@
-Here are the scripts running on the LoRa32u4II boards.
-The indoor and outdoor nodes collect data using sensors and transmit the information via LoRa to the repeater node. The repeater node, in turn, receives the data and forwards it via LoRaWAN to the gateway.
+# `src/LoRa_Board_Arduino_Code`
 
-The "libraries" folder contains the required non-standard libraries.
+Here are the scripts running on the LoRa32u4II boards. The indoor and outdoor nodes collect data using sensors and transmit the information via LoRa to the repeater node. The repeater node, in turn, receives the data and forwards it via LoRaWAN to the gateway.
+
+The `libraries` directory contains the required non-standard libraries.

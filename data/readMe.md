@@ -1,1 +1,3 @@
+# `data`
+
 This folder contains a CSV and an Excel file that include all the data received at the gateway during the test week. In addition, the Excel file provides a brief calculation of the achieved transmission rate in percent.
