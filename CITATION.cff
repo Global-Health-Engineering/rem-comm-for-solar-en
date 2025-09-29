@@ -3,7 +3,7 @@ message: "To cite this repository, use:"
 license: CC-BY-4.0
 title: "Development of a Remote Communications Infrastructure for an Off-Grid Energy System: Hardware, Software, and Data"
 date-released: "2025-09-09"
-doi: XXXX
+doi: 10.5281/zenodo.17226213
 type: software
 authors:
   - family-names: Voeten

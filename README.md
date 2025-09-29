@@ -1,5 +1,6 @@
 <!-- badges: start -->
-[![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17226213.svg)](https://doi.org/10.5281/zenodo.17226213)
 <!-- badges: end -->
 
 <h1> Development of a Remote Communications Infrastructure for an Off-Grid Energy System: Hardware, Software, and Data </h1>
