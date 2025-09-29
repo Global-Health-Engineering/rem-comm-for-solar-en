@@ -34,7 +34,6 @@ This thesis develops such a system for an off-grid health clinic in Tezhumke, no
 
 Custom sensor nodes record key measurements: medical refrigerator temperature and humidity, electrical parameters of the off-grid power system, and environmental data. Measurements are transmitted over LoRa and Long Range Wide-Area Network (LoRaWAN) to a gateway, visualized on an Internet of Things (IoT) platform (ThingsBoard), and automatically archived. Alarm rules notify remote researchers and on-site staff via platform alerts, email, SMS, and visual signals when thresholds are exceeded.
 
-
 In a 7-day field trial, the system achieved a packet reception rate of 97.64% over a distance of 8.5km and demonstrated stable autonomous operation. These results confirm that the system is a mature prototype ready for extended field trials and potential deployment in real-world conditions. Future work should include extended seasonal testing, long-term studies of battery aging, and improvements to the weatherproofing of individual components.
 
 Beyond the immediate use case in Tezhumke, the system may also be applicable to other similarly affected clinics or remote sites. With further refinement, it could support predictive maintenance strategies and contribute to improved reliability of off-grid power supplies, thereby strengthening healthcare delivery in underserved regions.
@@ -42,16 +41,9 @@ Beyond the immediate use case in Tezhumke, the system may also be applicable to 
 # Repository
 As part of this Master thesis, all developed resources have been collected and systematically documented in this public GitHub repository. The repository serves as a comprehensive reference point for future research and practical applications. It includes:
 
-• Source code for LoRa / LoRaWAN communication,
-
-• ThingsBoard dashboard configuration and the main payload decryption script,
-
-• Dedicated scripts for automated data export,
-
-• PCB layouts and electronic circuit schematics,
-
-• All custom-designed 3D models provided in STL format,
-
-• A complete bill of materials for all hardware components.
-
-
+- Source code for LoRa / LoRaWAN communication,
+- ThingsBoard dashboard configuration and the main payload decryption script,
+- Dedicated scripts for automated data export,
+- PCB layouts and electronic circuit schematics,
+- All custom-designed 3D models provided in STL format,
+- A complete bill of materials for all hardware components.
