@@ -23,7 +23,7 @@
 <p align="middle"> 
 <img src="img/ETH_GHE_logo.svg" width=600>
 <br><br>
-It compliments the openly-accessible master’s thesis, available on the<br \>  
+It complements the openly-accessible master’s thesis, available on the<br \>  
 <a href="">ETH Research Collection</a>.
 </p>
 
